@@ -9,6 +9,7 @@ import CartPage from './Component/Cart/CartPage';
 import SignIn from './Component/Auth/SignIn';
 import Login from "./Component/Auth/Login"
 import Address from './Component/Auth/Address';
+import AdminDash from './Component/Admin/AdminDash';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path='/cart' element={<CartPage />} />
             <Route path='/signIn' element={<SignIn />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/admin' element={<AdminDash/> } />
+
             <Route path='/details' element={<Address />} />
             
             
