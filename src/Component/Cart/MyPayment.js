@@ -30,7 +30,7 @@ const MyPayment = ({datasubmit}) => {
 				onClick={() =>
 				{
 									
-					initializePayment(datasubmit,onClose);
+					initializePayment(datasubmit, onClose);
 					
 					
 				}}>
