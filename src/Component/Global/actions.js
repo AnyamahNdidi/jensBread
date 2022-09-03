@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
+    
+    orderDetails:[],
     cart: [],
     quantity: 0,
     totalPrice: 0,
@@ -28,10 +30,15 @@ const actions = createSlice({
             state.totalPrice += payload.quantity * payload.price;
         },
 
+        addToDeatils: (state, {payload}) =>
+        {
+            state.orderDetails = payload
+        }
+
     
   }
 });
 
-export const {addToCart} = actions.actions
+export const {addToCart, addToDeatils} = actions.actions
 
 export default actions.reducer
