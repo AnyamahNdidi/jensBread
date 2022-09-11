@@ -4,7 +4,12 @@ import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Ico
 import axios from "axios"
 import AllProduct from '../AllProduct/AllProduct';
 import { useDispatch, useSelector } from "react-redux"
-import {addToDeatils} from "../Global/actions"
+import { addToDeatils } from "../Global/actions"
+import { io } from "socket.io-client";
+import moment from "moment";
+const socket = io("http://localhost:4040") 
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -209,8 +214,9 @@ const useStyles = makeStyles((theme) => ({
 function RecentIn ()
 {
     const classes = useStyles()
-    const [allorder, setAllData] = React.useState([])
+    const [allorder, setAllOrder] = React.useState([])
     const dispath = useDispatch()
+
     const getAllOrder = async () =>
     {
         try
@@ -218,7 +224,7 @@ function RecentIn ()
             await axios.get("http://localhost:4040/api/all/allorder").then((result) =>
             {
                 console.log("whats happing to the api",result)
-                setAllData(result?.data?.data)
+                setAllOrder(result?.data?.data)
                 console.log("this is all resent data",allorder)
             })
         } catch (error)
@@ -228,10 +234,17 @@ function RecentIn ()
        
     }
 
-    React.useEffect(() =>
-    {
-        getAllOrder()
-    },[])
+      React.useEffect(() => {
+      
+        getAllOrder();
+
+        socket.on("newData", (file) => {
+          setAllOrder([...allorder, file]);
+          console.log("trying to know why", file._id)
+       
+          getAllOrder();
+        });
+      }, []);
 
   return (
       <>
@@ -251,7 +264,7 @@ function RecentIn ()
                       
                       <>
                           {
-                              allorder.map((props) => (
+                              allorder?.map((props) => (
                                   
                                   <div
                                       onClick={() =>
@@ -264,7 +277,7 @@ function RecentIn ()
                                   >
                           <div className='orderDate'>
                               <div className='dOrdrConoo'><Typography>{props.fullName} </Typography></div>
-                                          <div ><Typography>{props.createdAt }</Typography></div>
+                                          <div ><Typography>{props.createdAt}</Typography></div>
                               
                           </div>
                           <div className="dPriceCon">

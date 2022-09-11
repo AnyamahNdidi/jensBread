@@ -33,12 +33,29 @@ const actions = createSlice({
         addToDeatils: (state, {payload}) =>
         {
             state.orderDetails = payload
+        }, 
+        removeCart: (state, {payload}) =>
+        {
+            let check = state.cart.findIndex((el) => el._id === payload._id )
+            
+            if (state.cart[check].quantity > 1)
+            {
+                state.cart[check].quantity -= 1
+            } else
+            {
+               state.cart = state.cart.filter( (item) =>  item._id !== payload._id ) 
+            }
+
+            state.quantity -= 1
+            state.totalPrice -= payload.price
+            
         }
+
 
     
   }
 });
 
-export const {addToCart, addToDeatils} = actions.actions
+export const {addToCart, addToDeatils,removeCart} = actions.actions
 
 export default actions.reducer

@@ -348,7 +348,7 @@ function DetailsRecent ()
                               
                               {
                                   detailID.productOrder?.map((props) => (
-                                       <Box className="conProduct">
+                                       <Box key={props._id} className="conProduct">
                                   <Box className="picVin">
                                               <Box className="myHolderPic">
                                                   <img src={props.avatar } style={{width:"100%", height:"100%", borderRadius:"50%"}} />

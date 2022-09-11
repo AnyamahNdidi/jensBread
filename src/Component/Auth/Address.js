@@ -85,8 +85,8 @@ const useStyles = makeStyles((theme) => ({
 function Address ()
 {
     const classes = useStyles()
-    const cartTotalPrice = useSelector((state) => state.myReducer.totalPrice);
-    const cartData = useSelector((state) => state.myReducer.cart);
+    const cartTotalPrice = useSelector((state) => state.persistedReducer.totalPrice);
+    const cartData = useSelector((state) => state.persistedReducer.cart);
 
   const publicKey = "pk_test_23d13fb294f558953fdcdc971aa6ece27ff088e2"
   const amount = cartTotalPrice * 100 // Remember, set in kobo!
