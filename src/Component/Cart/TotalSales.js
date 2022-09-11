@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
 function TotalSales ()
 {
   const classes = useStyles()
-  const totalSales = useSelector((state)=> state.myReducer.totalPrice)
+  const totalSales = useSelector((state)=> state.persistedReducer.totalPrice)
   return (
    
       <Box className={classes.root}>

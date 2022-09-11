@@ -5,6 +5,8 @@ import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Ico
 import axios from "axios"
 import { colors } from '@material-ui/core';
 import pix from "./1.png"
+import { removeCart } from "../Global/actions"
+import {useDispatch} from "react-redux"
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -175,7 +177,8 @@ const useStyles = makeStyles((theme) => ({
 
 function CartCard ({props})
 {
-    const classes = useStyles()
+  const classes = useStyles()
+  const dispatch = useDispatch()
   return (
       <Box className={classes.root} >
           <Box className='holdmyCardd'>
@@ -197,7 +200,10 @@ function CartCard ({props})
                   
                       <Box className='posCon'> <Typography>+</Typography></Box>
                       <Box className='posNum'><Typography>{props.quantity }</Typography></Box>
-                      <Box className="posNag"><Typography>-</Typography></Box>
+          <Box className="posNag" onClick={() =>
+          {
+            dispatch(removeCart(props))
+                      }}><Typography>-</Typography></Box>
               </Box>
               
               <Box className='dpriceCon'>

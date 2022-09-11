@@ -4,6 +4,7 @@ import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Ico
 import DetailsRecent from './DetailsRecent';
 import RecentIn from './RecentIn';
 
+
 const useStyles = makeStyles((theme) => ({
        root: {
         height: "auto",
@@ -48,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
         "& .dmainCon": {
             width: "100%",
             display: "flex",
-            flexWrap:"wrap"
+            flexWrap: "wrap",
+            justifyContent:"space-between"
         }
         
     }

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function HoldCart ()
 {
     const classes = useStyles()
-    const DataCart = useSelector((state)=> state.myReducer.cart)
+    const DataCart = useSelector((state)=> state.persistedReducer.cart)
   return (
    
       <Box className={classes.root}>
